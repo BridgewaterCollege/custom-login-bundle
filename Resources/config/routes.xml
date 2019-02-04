@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+    <route id="custom_login_landing" controller="tweisman_custom_login.controller.security_controller:login" path="/login" >
+    </route>
+    <route id="custom_login_landing_local" controller="tweisman_custom_login.controller.security_controller:loginLocal" path="/login/local" >
+    </route>
+    <route id="custom_login_landing_saml" controller="tweisman_custom_login.controller.security_controller:loginSaml" path="/login/saml" >
+    </route>
+    <route id="custom_login_landing_saml_check" controller="tweisman_custom_login.controller.security_controller:loginSamlCheck" path="/login/saml-check" >
+    </route>
+    <route id="custom_login_test_landing" controller="tweisman_custom_login.controller.security_controller:loginTestLanding" path="/secure/test-secure-landing" >
+    </route>
+</routes>

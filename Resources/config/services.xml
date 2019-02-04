@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="tweisman_custom_login.controller.security_controller" class="Tweisman\Bundle\CustomLoginBundle\Controller\SecurityController">
+            <tag name="controller.service_arguments"/>
+        </service>
+        <service id="tweisman_custom_login.process_handler.login_handler" class="Tweisman\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler" autowire="true" public="true" />
+        <service id="tweisman_custom_login.login_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginAuthenticator" autowire="true" public="true" />
+        <service id="tweisman_custom_login.login_form_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginFormAuthenticator" autowire="true" public="true" />
+        <service id="tweisman_custom_login.login_saml_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginSamlAuthenticator" autowire="true" public="true" />
+        <service id="Tweisman\Bundle\CustomLoginBundle\Security\User\UserCreator" autowire="true" public="true"/>
+
+        <!-- SimpleSAML Related Services -->
+        <service id="SimpleSAML\Auth\Simple" autowire="true" public="true">
+            <argument key="$authSource">%sp_name%</argument>
+        </service>
+
+        <!-- Console Commands: -->
+        <service id="Tweisman\Bundle\CustomLoginBundle\Command\CreateSimplesamlConfigFiles" autowire="true">
+            <tag name="console.command" />
+        </service>
+        <service id="Tweisman\Bundle\CustomLoginBundle\Command\UpdateSimpleSamlConfig" autowire="true">
+            <tag name="console.command" />
+        </service>
+    </services>
+</container>
