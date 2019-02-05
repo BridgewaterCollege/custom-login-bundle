@@ -1,10 +1,10 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\Entity;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Tweisman\Bundle\CustomLoginBundle\Entity\UserPermission;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\UserPermission;
 
 /**
  * @ORM\Entity()

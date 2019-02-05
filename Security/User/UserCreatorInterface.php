@@ -1,6 +1,6 @@
 <?php
 
-namespace Tweisman\Bundle\CustomLoginBundle\Security\User;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Security\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface UserCreatorInterface

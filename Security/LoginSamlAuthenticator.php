@@ -1,5 +1,5 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\Security;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Security;
 
 use Psr\Container\ContainerInterface;
 use SimpleSAML\Auth\Simple;
@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use Tweisman\Bundle\CustomLoginBundle\Security\User\UserCreator;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Security\User\UserCreator;
 
 class LoginSamlAuthenticator extends AbstractGuardAuthenticator
 {

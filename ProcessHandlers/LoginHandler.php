@@ -1,7 +1,7 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\ProcessHandlers;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers;
 
-use Tweisman\Bundle\CustomLoginBundle\Entity\LoginEndpoint;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\LoginEndpoint;
 
 /**
  * Class Type: Process Handler

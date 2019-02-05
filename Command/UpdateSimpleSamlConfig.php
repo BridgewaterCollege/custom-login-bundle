@@ -1,5 +1,5 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\Command;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;

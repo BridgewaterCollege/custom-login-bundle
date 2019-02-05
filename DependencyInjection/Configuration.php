@@ -1,5 +1,5 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\DependencyInjection;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -14,7 +14,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('tweisman_custom_login', 'array');
+        $rootNode = $treeBuilder->root('bridgewater_college_custom_login', 'array');
 
         $rootNode
             ->children()

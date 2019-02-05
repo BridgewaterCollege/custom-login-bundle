@@ -1,5 +1,5 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\Entity;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;

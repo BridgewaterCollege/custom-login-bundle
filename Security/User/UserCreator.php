@@ -1,11 +1,11 @@
 <?php
 // ..src/BCCustomSSOBundle/Security/User/UserCreator.php
-namespace Tweisman\Bundle\CustomLoginBundle\Security\User;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Security\User;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Tweisman\Bundle\CustomLoginBundle\Entity\User;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\User;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Tweisman\Bundle\CustomLoginBundle\Entity\UserPermission;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\UserPermission;
 
 class UserCreator implements UserCreatorInterface
 {

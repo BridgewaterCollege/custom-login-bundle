@@ -1,11 +1,11 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\Security;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Security;
 
 use SimpleSAML\Auth\Simple;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
-use Tweisman\Bundle\CustomLoginBundle\Entity\User;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

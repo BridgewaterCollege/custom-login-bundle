@@ -1,5 +1,5 @@
 <?php
-namespace Tweisman\Bundle\CustomLoginBundle\ProcessHandlers;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Psr\Log\LoggerInterface;

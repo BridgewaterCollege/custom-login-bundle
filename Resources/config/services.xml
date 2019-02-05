@@ -5,14 +5,14 @@
 
         http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="tweisman_custom_login.controller.security_controller" class="Tweisman\Bundle\CustomLoginBundle\Controller\SecurityController">
+        <service id="bridgewater_college_custom_login.controller.security_controller" class="BridgewaterCollege\Bundle\CustomLoginBundle\Controller\SecurityController">
             <tag name="controller.service_arguments"/>
         </service>
-        <service id="tweisman_custom_login.process_handler.login_handler" class="Tweisman\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler" autowire="true" public="true" />
-        <service id="tweisman_custom_login.login_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginAuthenticator" autowire="true" public="true" />
-        <service id="tweisman_custom_login.login_form_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginFormAuthenticator" autowire="true" public="true" />
-        <service id="tweisman_custom_login.login_saml_authenticator" class="Tweisman\Bundle\CustomLoginBundle\Security\LoginSamlAuthenticator" autowire="true" public="true" />
-        <service id="Tweisman\Bundle\CustomLoginBundle\Security\User\UserCreator" autowire="true" public="true"/>
+        <service id="bridgewater_college_custom_login.process_handler.login_handler" class="BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler" autowire="true" public="true" />
+        <service id="bridgewater_college_custom_login.login_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginAuthenticator" autowire="true" public="true" />
+        <service id="bridgewater_college_custom_login.login_form_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginFormAuthenticator" autowire="true" public="true" />
+        <service id="bridgewater_college_custom_login.login_saml_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginSamlAuthenticator" autowire="true" public="true" />
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Security\User\UserCreator" autowire="true" public="true"/>
 
         <!-- SimpleSAML Related Services -->
         <service id="SimpleSAML\Auth\Simple" autowire="true" public="true">
@@ -20,10 +20,10 @@
         </service>
 
         <!-- Console Commands: -->
-        <service id="Tweisman\Bundle\CustomLoginBundle\Command\CreateSimplesamlConfigFiles" autowire="true">
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\CreateSimplesamlConfigFiles" autowire="true">
             <tag name="console.command" />
         </service>
-        <service id="Tweisman\Bundle\CustomLoginBundle\Command\UpdateSimpleSamlConfig" autowire="true">
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\UpdateSimpleSamlConfig" autowire="true">
             <tag name="console.command" />
         </service>
     </services>

@@ -1,5 +1,5 @@
 <?php
-namespace BCCustomSSOBundle\Security\Authentication\Provider;
+namespace BridgewaterCollege\Security\Authentication\Provider;
 
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
