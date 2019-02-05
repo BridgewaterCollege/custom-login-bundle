@@ -13,7 +13,7 @@
     ],
     "autoload":{
       "psr-4":{
-        "Tweisman\\Bundle\\CustomLoginBundle\\": "vendor/tweisman/custom-login-bundle/"
+        "BridgewaterCollege\\Bundle\\CustomLoginBundle\\": "vendor/bridgewatercollege/custom-login-bundle/"
       }
     },
     "require": {
