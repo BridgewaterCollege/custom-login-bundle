@@ -1,0 +1,24 @@
+{
+    "name": "bridgewatercollege/custom-login-bundle",
+    "type": "symfony-bundle",
+    "description": "Allows custom set-up and implementation of authetication methods into a single symfony application (local, simplesamlphp)",
+    "keywords": ["login", "simplesamlphp", "saml2", "authentication"],
+    "homepage": "http://www.bridgewater.edu",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Tyler Weisman",
+        "email": "tweisman@bridgewater.edu"
+      }
+    ],
+    "autoload":{
+      "psr-4":{
+        "BridgewaterCollege\\Bundle\\CustomLoginBundle\\": ""
+      }
+    },
+    "require": {
+      "php": "~7.0",
+      "simplesamlphp/simplesamlphp": "*"
+      
+    }
+}
