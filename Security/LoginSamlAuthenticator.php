@@ -4,6 +4,8 @@ namespace BridgewaterCollege\Bundle\CustomLoginBundle\Security;
 use Psr\Container\ContainerInterface;
 use SimpleSAML\Auth\Simple;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,16 +28,18 @@ class LoginSamlAuthenticator extends AbstractGuardAuthenticator
     private $csrfTokenManager;
     private $userCreator;
     private $simplesamlAuthObject;
+    private $session;
 
     private $failMessage = 'Invalid credentials';
 
-    public function __construct(RequestStack $requestStack, RouterInterface $router, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrfTokenManager, ContainerInterface $container, UserCreator $userCreator, Simple $simplesamlAuthObject) {
+    public function __construct(RequestStack $requestStack, RouterInterface $router, EntityManagerInterface $entityManager, CsrfTokenManagerInterface $csrfTokenManager, ContainerInterface $container, UserCreator $userCreator, Simple $simplesamlAuthObject, SessionInterface $session) {
         $this->requestStack = $requestStack;
         $this->router = $router;
         $this->em = $entityManager;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->userCreator = $userCreator;
         $this->simplesamlAuthObject = $simplesamlAuthObject;
+        $this->session = $session;
     }
 
     public function supports(Request $request)
@@ -83,9 +87,13 @@ class LoginSamlAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        //$requestedUrl = $this->session->get('userRequestedUrl');
+        $requestedUrl = $this->session->get('original_user_requested_route');
         if (isset($requestedUrl)) {
-            $url = $requestedUrl;
+            try {
+                $url = $this->router->generate($requestedUrl);
+            } catch (MissingMandatoryParametersException $exception) {
+                $url = $this->router->generate('custom_login_test_landing');
+            }
         } else {
             // Send them to the default target path which in this case is "secure":
             $url = $this->router->generate('custom_login_test_landing');

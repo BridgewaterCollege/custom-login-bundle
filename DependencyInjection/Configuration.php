@@ -18,6 +18,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->variableNode('local_return_url')->end()
                 ->arrayNode('simplesaml')
                     ->children()
                         ->arrayNode('attributes')

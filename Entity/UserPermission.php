@@ -27,7 +27,7 @@ class UserPermission
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="permissions", cascade={"persist", "merge"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id", onDelete="CASCADE")
      */
     protected $user;
 

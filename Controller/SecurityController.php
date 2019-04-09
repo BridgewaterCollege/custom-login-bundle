@@ -2,6 +2,7 @@
 // src/Controller/SecurityController.php
 namespace BridgewaterCollege\Bundle\CustomLoginBundle\Controller;
 
+use Psr\Container\ContainerInterface;
 use SimpleSAML\Auth\Simple;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,11 @@ use BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler;
 
 class SecurityController extends AbstractController
 {
+    private $localRedirectUrl;
+
     public function login(Request $request, SessionInterface $session){
+        $session->set('original_user_requested_route', $session->get('last_route')['name']);
+
         /** Default Login Url: grabs the "default" login path set in the applications database and kicks off the process */
         $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
         $defaultLoginPath = $LoginHandler->getDefaultLoginPath();
@@ -68,8 +73,15 @@ class SecurityController extends AbstractController
     }
 
     public function loginTestLanding(Request $request) {
+        if (isset($this->localRedirectUrl))
+            return $this->redirect($this->localRedirectUrl);
+
         $twigFile = '@bridgewater_college_custom_login/test-secure-landing.html.twig';
         return $this->render($twigFile, [
         ]);
+    }
+
+    public function setConfig($localRedirectUrl) {
+        $this->localRedirectUrl = $localRedirectUrl;
     }
 }

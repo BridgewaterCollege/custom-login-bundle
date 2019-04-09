@@ -216,6 +216,19 @@ class User implements UserInterface, \Serializable
     public function setPermissions($permissions) {
         $this->permissions = $permissions;
     }
+    public function hasPermissions($permissionsRequired) {
+        /**
+         * Allows you to run @Security("user.hasPermissions(['Perm_Name_1', 'Perm_Name_2'])") from symfony's controller annotation to permit/deny access to a page or section of the application
+         */
+        if (is_iterable($this->permissions) && is_array($permissionsRequired)) {
+            foreach ($this->permissions as $i=>$permObject) {
+                if (in_array($permObject->getPermName(), $permissionsRequired))
+                    return true;
+            }
+        }
+
+        return false;
+    }
 
     public function addUserPermission($permission) {
         $this->permissions->add($permission);

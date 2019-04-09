@@ -26,8 +26,12 @@ class BridgewaterCollegeCustomLoginExtension extends Extension
         //$configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $sillyServiceDefintion = $container->getDefinition( 'BridgewaterCollege\Bundle\CustomLoginBundle\Security\User\UserCreator' );
-        $sillyServiceDefintion->addMethodCall( 'setConfig', array( $config['simplesaml']['attributes']) );
+        if (isset($config['simplesaml']['attributes']))
+            $sillyServiceDefintion->addMethodCall( 'setConfig', array( $config['simplesaml']['attributes']) );
 
+        $securityControllerDefinition = $container->getDefinition( 'bridgewater_college_custom_login.controller.security_controller' );
+        if (isset($config['local_return_url']))
+            $securityControllerDefinition->addMethodCall('setConfig', array($config['local_return_url']));
         //$simplesamlConfiguration = $container->getDefinition('simplesaml_configuration');
         //$simplesamlConfiguration->addMethodCall('__construct', array($config['simplesaml']['config'], null));
     }

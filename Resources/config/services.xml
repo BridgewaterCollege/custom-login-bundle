@@ -19,6 +19,11 @@
             <argument key="$authSource">%sp_name%</argument>
         </service>
 
+        <!-- Event Listener: -->
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\EventListener\LastRouteListener" autowire="true" public="true">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="30"/>
+        </service>
+
         <!-- Console Commands: -->
         <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\CreateSimplesamlConfigFiles" autowire="true">
             <tag name="console.command" />
