@@ -1,10 +1,12 @@
 <?php
-namespace BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Utils;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class Type: Process Handler
@@ -17,16 +19,22 @@ class ProcessHandler
 {
     protected $validator_service;
     protected $em;
+    protected $session;
     protected $logger;
+    protected $encryptor;
+    protected $security;
 
     public $errorsArray = array(); // error's array set on validateEntity
     public $pageCanSubmit = false; // determines if the current screen/page can submit (flag)
 
-    public function __construct(ValidatorInterface $validator_service, EntityManagerInterface $em, LoggerInterface $logger)
+    public function __construct(ValidatorInterface $validator_service, EntityManagerInterface $em, SessionInterface $session, LoggerInterface $logger, SecureEncryptor $encryptor, Security $security)
     {
         $this->validator_service = $validator_service;
         $this->em = $em;
+        $this->session = $session;
         $this->logger = $logger;
+        $this->encryptor = $encryptor;
+        $this->security = $security;
     }
 
     public function validateDateIsFuture($dateSelected) {

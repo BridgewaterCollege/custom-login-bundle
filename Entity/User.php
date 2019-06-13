@@ -176,6 +176,16 @@ class User implements UserInterface, \Serializable
         return $this->username;
     }
 
+    public function getUsernameNoDomain() {
+        $username = $this->username;
+        if (strpos($this->username, '@') !== false) {
+            $username = explode('@', $username);
+            $username = $username[0];
+        }
+
+        return $username;
+    }
+
     /**
      * @param string $username
      *
