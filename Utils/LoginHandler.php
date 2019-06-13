@@ -1,5 +1,5 @@
 <?php
-namespace BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers;
+namespace BridgewaterCollege\Bundle\CustomLoginBundle\Utils;
 
 use BridgewaterCollege\Bundle\CustomLoginBundle\Entity\LoginEndpoint;
 

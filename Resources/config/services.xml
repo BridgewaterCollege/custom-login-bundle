@@ -8,11 +8,14 @@
         <service id="bridgewater_college_custom_login.controller.security_controller" class="BridgewaterCollege\Bundle\CustomLoginBundle\Controller\SecurityController">
             <tag name="controller.service_arguments"/>
         </service>
-        <service id="bridgewater_college_custom_login.process_handler.login_handler" class="BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler" autowire="true" public="true" />
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler" autowire="true" public="true" />
         <service id="bridgewater_college_custom_login.login_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginAuthenticator" autowire="true" public="true" />
         <service id="bridgewater_college_custom_login.login_form_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginFormAuthenticator" autowire="true" public="true" />
         <service id="bridgewater_college_custom_login.login_saml_authenticator" class="BridgewaterCollege\Bundle\CustomLoginBundle\Security\LoginSamlAuthenticator" autowire="true" public="true" />
         <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Security\User\UserCreator" autowire="true" public="true"/>
+
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Utils\SecureEncryptor" autowire="true" public="true"/>
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Utils\EllucianColleagueApiHandler" autowire="true"/>
 
         <!-- SimpleSAML Related Services -->
         <service id="SimpleSAML\Auth\Simple" autowire="true" public="true">
@@ -29,6 +32,12 @@
             <tag name="console.command" />
         </service>
         <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\UpdateSimpleSamlConfig" autowire="true">
+            <tag name="console.command" />
+        </service>
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\CreateEllucianApiCommand" autowire="true">
+            <tag name="console.command" />
+        </service>
+        <service id="BridgewaterCollege\Bundle\CustomLoginBundle\Command\LoginToEllucianApiCommand" autowire="true">
             <tag name="console.command" />
         </service>
     </services>
