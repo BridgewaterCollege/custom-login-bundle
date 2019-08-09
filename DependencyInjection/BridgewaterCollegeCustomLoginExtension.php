@@ -6,8 +6,6 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
 
-
-
 class BridgewaterCollegeCustomLoginExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)

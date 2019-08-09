@@ -70,6 +70,11 @@ class User implements UserInterface, \Serializable
         $this->permissions = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->fullname;
+    }
+
     /**
      * @return int
      */

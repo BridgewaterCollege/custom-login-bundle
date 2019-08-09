@@ -1,10 +1,5 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- */
-
 namespace BridgewaterCollege\Bundle\CustomLoginBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
