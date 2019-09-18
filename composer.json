@@ -18,7 +18,7 @@
     },
     "require": {
       "php": "~7.0",
-      "simplesamlphp/simplesamlphp": "^1.7",
+      "simplesamlphp/simplesamlphp": "^1.17",
       "mashape/unirest-php": "^3.0"
     }
 }
