@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 // Custom Includes:
-use BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler;
+use BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler;
 
 class SecurityController extends AbstractController
 {
