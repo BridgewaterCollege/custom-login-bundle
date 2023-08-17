@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
         $session->set('original_user_requested_route', $lastUrl);
 
         /** Default Login Url: grabs the "default" login path set in the applications database and kicks off the process */
-        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        $LoginHandler = $this->container->get('BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler');
         $defaultLoginPath = $LoginHandler->getDefaultLoginPath();
         $redirectUrl = "".$request->getBaseUrl()."/".$defaultLoginPath;
 
@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
     }
 
     public function loginLocal(AuthenticationUtils $authenticationUtils) {
-        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        $LoginHandler = $this->container->get('BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler');
         if (!$LoginHandler->getLoginPathEnabled(1))
             return $this->redirectToRoute('custom_login_landing');
 
@@ -50,7 +50,7 @@ class SecurityController extends AbstractController
     }
 
     public function loginSaml(Request $request, Simple $as) {
-        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        $LoginHandler = $this->container->get('BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler');
         if (!$LoginHandler->getLoginPathEnabled(2))
             return $this->redirectToRoute('custom_login_landing');
 
@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
     }
 
     public function loginSamlCheck(Request $request, Simple $as) {
-        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        $LoginHandler = $this->container->get('BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler');
         if (!$LoginHandler->getLoginPathEnabled(2))
             return $this->redirectToRoute('custom_login_landing');
 
