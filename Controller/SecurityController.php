@@ -13,24 +13,27 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 // Custom Includes:
-use BridgewaterCollege\Bundle\CustomLoginBundle\Utils\LoginHandler;
+use BridgewaterCollege\Bundle\CustomLoginBundle\ProcessHandlers\LoginHandler;
 
 class SecurityController extends AbstractController
 {
     private $localRedirectUrl;
 
-    public function login(Request $request, SessionInterface $session, LoginHandler $loginHandler){
-        $session->set('original_user_requested_route', $session->get('last_route')['name']);
+    public function login(Request $request, SessionInterface $session){
+        $lastUrl = isset($session->get('last_route')['name']) ? $session->get('last_route')['name']: 'internal-main-landing';
+        $session->set('original_user_requested_route', $lastUrl);
 
         /** Default Login Url: grabs the "default" login path set in the applications database and kicks off the process */
-        $defaultLoginPath = $loginHandler->getDefaultLoginPath();
+        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        $defaultLoginPath = $LoginHandler->getDefaultLoginPath();
         $redirectUrl = "".$request->getBaseUrl()."/".$defaultLoginPath;
 
         return $this->redirect($redirectUrl);
     }
 
-    public function loginLocal(AuthenticationUtils $authenticationUtils, LoginHandler $loginHandler) {
-        if (!$loginHandler->getLoginPathEnabled(1))
+    public function loginLocal(AuthenticationUtils $authenticationUtils) {
+        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        if (!$LoginHandler->getLoginPathEnabled(1))
             return $this->redirectToRoute('custom_login_landing');
 
         // System: ensure they aren't already authenticated this session
@@ -46,8 +49,9 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    public function loginSaml(Request $request, Simple $as, LoginHandler $loginHandler) {
-        if (!$loginHandler->getLoginPathEnabled(2))
+    public function loginSaml(Request $request, Simple $as) {
+        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        if (!$LoginHandler->getLoginPathEnabled(2))
             return $this->redirectToRoute('custom_login_landing');
 
         // System: ensure they aren't already authenticated this session
@@ -59,8 +63,9 @@ class SecurityController extends AbstractController
         return $this->redirectToRoute('custom_login_landing_saml_check');
     }
 
-    public function loginSamlCheck(Request $request, Simple $as, LoginHandler $loginHandler) {
-        if (!$loginHandler->getLoginPathEnabled(2))
+    public function loginSamlCheck(Request $request, Simple $as) {
+        $LoginHandler = $this->container->get('bridgewater_college_custom_login.process_handler.login_handler');
+        if (!$LoginHandler->getLoginPathEnabled(2))
             return $this->redirectToRoute('custom_login_landing');
 
         /** SAML Authenticator takes over here */

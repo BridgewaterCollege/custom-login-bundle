@@ -4,10 +4,11 @@ namespace BridgewaterCollege\Bundle\CustomLoginBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 
 class LastRouteListener {
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         // Do not save subrequests
         if ($event->getRequestType() !== HttpKernel::MASTER_REQUEST) {

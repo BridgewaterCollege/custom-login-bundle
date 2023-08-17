@@ -1,4 +1,5 @@
 <?php
+
 namespace BridgewaterCollege\Bundle\CustomLoginBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -13,24 +14,23 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bridgewater_college_custom_login', 'array');
+        $treeBuilder = new TreeBuilder('bridgewater_college_custom_login');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
-                ->variableNode('local_return_url')->end()
-                ->arrayNode('simplesaml')
-                    ->children()
-                        ->arrayNode('attributes')
-                            ->children()
-                                ->variableNode('primary_key')->end()
-                                ->variableNode('required_attributes')->end()
-                                ->variableNode('user_mappings')->end()
-                        ->end()
-                    ->end() //config
-                ->end() //simplesaml
+            ->variableNode('local_return_url')->end()
+            ->arrayNode('simplesaml')
+            ->children()
+            ->arrayNode('attributes')
+            ->children()
+            ->variableNode('primary_key')->end()
+            ->variableNode('required_attributes')->end()
+            ->variableNode('user_mappings')->end()
             ->end()
-        ;
+            ->end() //config
+            ->end() //simplesaml
+            ->end();
 
         return $treeBuilder;
     }
