@@ -45,7 +45,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var array
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json")
      */
     protected $roles = array();
 
@@ -231,6 +231,22 @@ class User implements UserInterface, \Serializable
     public function setPermissions($permissions) {
         $this->permissions = $permissions;
     }
+
+    public function getPermissionLandingRoute()
+    {
+        echo json_encode($this->permissions);
+        foreach ($this->permissions as $i=>$permission)
+            switch ($permission->getPermName()) {
+                case 'PERM_DirectoryAdmin':
+                    return 'admin-dashboard';
+                case 'Staff':
+                    return 'internal-main-landing';
+                case 'Student':
+                    return 'public-main-landing';
+            }
+        return 'access-denied';
+    }
+
     public function hasPermissions($permissionsRequired) {
         /**
          * Allows you to run @Security("user.hasPermissions(['Perm_Name_1', 'Perm_Name_2'])") from symfony's controller annotation to permit/deny access to a page or section of the application
